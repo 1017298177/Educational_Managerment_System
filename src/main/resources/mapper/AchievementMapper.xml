@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ed.mapper.AchievementMapper" >
+  <resultMap id="BaseResultMap" type="com.ed.pojo.Achievement" >
+    <id column="achievement_id" property="achievementId" jdbcType="INTEGER" />
+    <result column="achievement_course" property="achievementCourse" jdbcType="VARCHAR" />
+    <result column="achievement_course_type" property="achievementCourseType" jdbcType="VARCHAR" />
+    <result column="achievement_core" property="achievementCore" jdbcType="INTEGER" />
+    <result column="achievement_course_credit" property="achievementCourseCredit" jdbcType="DOUBLE" />
+    <result column="achievement_user_sno" property="achievementUserSno" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    achievement_id, achievement_course,achievement_course_type, achievement_core,
+    achievement_course_credit, achievement_user_sno
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from achievement
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAchievement" resultMap="BaseResultMap" >
+       select  <include refid="Base_Column_List" /> from achievement
+    <where>
+      <if test="achievementCourse != null and achievementCourse !=''" >
+        achievement_course like concat('%',#{achievementCourse},'%') and
+      </if>
+      <if test="achievementCourseType != null and achievementCourseType !=''" >
+        achievement_course_type like concat('%',#{achievementCourseType},'%') and
+      </if>
+      <if test="achievementCore != null and achievementCore !=''" >
+        achievement_core like concat('%',#{achievementCore},'%') and
+      </if>
+      <if test="achievementCourseCredit != null and achievementCourseCredit !=''" >
+        achievement_course_credit like concat('%',#{achievementCourseCredit},'%') and
+      </if>
+      <if test="achievementUserSno != null and achievementUserSno !=''" >
+        achievement_user_sno like concat('%',#{achievementUserSno},'%')
+      </if>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from achievement
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ed.pojo.Achievement" >
+    insert into achievement (achievement_id, achievement_course, 
+      " achievement_course_type", achievement_core, 
+      achievement_course_credit, achievement_user_sno
+      )
+    values (#{achievementId,jdbcType=INTEGER}, #{achievementCourse,jdbcType=VARCHAR}, 
+      #{achievementCourseType,jdbcType=VARCHAR}, #{achievementCore,jdbcType=INTEGER}, 
+      #{achievementCourseCredit,jdbcType=DOUBLE}, #{achievementUserSno,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ed.pojo.Achievement" >
+    insert into achievement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="achievementId != null" >
+        achievement_id,
+      </if>
+      <if test="achievementCourse != null" >
+        achievement_course,
+      </if>
+      <if test="achievementCourseType != null" >
+        " achievement_course_type",
+      </if>
+      <if test="achievementCore != null" >
+        achievement_core,
+      </if>
+      <if test="achievementCourseCredit != null" >
+        achievement_course_credit,
+      </if>
+      <if test="achievementUserSno != null" >
+        achievement_user_sno,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="achievementId != null" >
+        #{achievementId,jdbcType=INTEGER},
+      </if>
+      <if test="achievementCourse != null" >
+        #{achievementCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="achievementCourseType != null" >
+        #{achievementCourseType,jdbcType=VARCHAR},
+      </if>
+      <if test="achievementCore != null" >
+        #{achievementCore,jdbcType=INTEGER},
+      </if>
+      <if test="achievementCourseCredit != null" >
+        #{achievementCourseCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="achievementUserSno != null" >
+        #{achievementUserSno,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ed.pojo.Achievement" >
+    update achievement
+    <set >
+      <if test="achievementCourse != null" >
+        achievement_course = #{achievementCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="achievementCourseType != null" >
+        " achievement_course_type" = #{achievementCourseType,jdbcType=VARCHAR},
+      </if>
+      <if test="achievementCore != null" >
+        achievement_core = #{achievementCore,jdbcType=INTEGER},
+      </if>
+      <if test="achievementCourseCredit != null" >
+        achievement_course_credit = #{achievementCourseCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="achievementUserSno != null" >
+        achievement_user_sno = #{achievementUserSno,jdbcType=INTEGER},
+      </if>
+    </set>
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ed.pojo.Achievement" >
+    update achievement
+    set achievement_course = #{achievementCourse,jdbcType=VARCHAR},
+      " achievement_course_type" = #{achievementCourseType,jdbcType=VARCHAR},
+      achievement_core = #{achievementCore,jdbcType=INTEGER},
+      achievement_course_credit = #{achievementCourseCredit,jdbcType=DOUBLE},
+      achievement_user_sno = #{achievementUserSno,jdbcType=INTEGER}
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </update>
+</mapper>
