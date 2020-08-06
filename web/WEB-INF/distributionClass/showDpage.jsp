@@ -26,7 +26,7 @@
         <form class="layui-form" action="">
             <input type="hidden" name="courseId" value="${courseId}">
             <input type="hidden" name="userSno" value="${teacherSnoL}">
-
+            <input type="hidden" name="courseDepartment" value="${courseDep}">
 
             <div class="layui-form-item">
                 <label for="courseTeacher" class="layui-form-label">

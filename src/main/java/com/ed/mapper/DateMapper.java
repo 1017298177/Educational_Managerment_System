@@ -20,4 +20,6 @@ public interface DateMapper {
     int updateByPrimaryKey(Date record);
 
     List<Date> queryAll();
+
+    int deleteBySemester(String semester);
 }

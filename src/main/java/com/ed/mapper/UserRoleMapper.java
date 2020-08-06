@@ -16,4 +16,6 @@ public interface UserRoleMapper {
     int updateByPrimaryKey(UserRole record);
 
     int deleteByUserId(int userId);
+
+    String queryRoleByUserId(int userId);
 }

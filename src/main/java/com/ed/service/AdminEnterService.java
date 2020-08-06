@@ -27,4 +27,6 @@ public interface AdminEnterService {
     Map<String, Object> pageMap(MyPage myPage);
 
     int setDime(Date date);
+
+    public int queryRoleByUserId(int userId);
 }

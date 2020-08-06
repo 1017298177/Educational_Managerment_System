@@ -101,7 +101,7 @@
 
                                 <td>
                                     <a title="分配课程"
-                                       onclick="xadmin.open('分配课程','${pageContext.request.contextPath}/distributionClassController/toDistributionPage.do?teacherNameL=${teacherNameL}&teacherSnoL=${teacherSnoL}&courseId=${x.courseId}',450,550)">
+                                       onclick="xadmin.open('分配课程','${pageContext.request.contextPath}/distributionClassController/toDistributionPage.do?teacherNameL=${teacherNameL}&teacherSnoL=${teacherSnoL}&courseId=${x.courseId}&courseDep=${x.courseDepartment}',450,550)">
                                         <i class="layui-icon">&#xe642;</i>
                                     </a>
                                 </td>

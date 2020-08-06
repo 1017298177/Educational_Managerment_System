@@ -1,7 +1,9 @@
 package com.ed.service.impl;
 
+import com.ed.mapper.ClassMapper;
 import com.ed.mapper.CourseMapper;
 import com.ed.mapper.UserMapper;
+import com.ed.pojo.Class;
 import com.ed.pojo.Course;
 import com.ed.pojo.User;
 import com.ed.service.DistributionClassService;
@@ -20,6 +22,8 @@ public class DistributionClassServiceImpl implements DistributionClassService {
     UserMapper userMapper;
     @Autowired
     CourseMapper courseMapper;
+    @Autowired
+    ClassMapper classMapper;
     @Override
     public Map<String, Object> queryTeacher(User user) {
         PageHelper.startPage(user.getPage(),user.getRow());
@@ -58,4 +62,19 @@ public class DistributionClassServiceImpl implements DistributionClassService {
 
         return courseMapper.updateByPrimaryKeySelective(course);
     }
+
+    @Override
+    public int saveClasstable(Course course) {
+        Class c=new Class();
+        c.setClassTecherSno(course.getUserSno());
+        c.setClassDep(course.getCourseDepartment());
+        c.setClassC(course.getCourseClass());
+        c.setClassLocation(course.getCourseLocation());
+        c.setClassNum(course.getCourseNumber().toString());
+        c.setClassWeek(course.getCourseWeek());
+        System.out.println(c);
+        int i = classMapper.insertSelective(c);
+        return 0;
+    }
+
 }

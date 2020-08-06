@@ -5,6 +5,9 @@
          version="4.0">
     <!--主要负责处理由　JavaBeans Introspector的使用而引起的缓冲泄露  -->
     <listener>
+        <listener-class>com.ed.config.InitSession</listener-class>
+    </listener>
+    <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
     <!-- 扫描配置 -->

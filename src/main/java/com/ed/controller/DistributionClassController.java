@@ -21,6 +21,7 @@ public class DistributionClassController {
     @RequestMapping("toDistribution.do")
     public String toDistribution(User user,Model model){
         Map<String, Object> teacherMap= dc.queryTeacher(user);
+
         model.addAttribute("teacherMap",teacherMap);
         return "distributionClass/distributionClassAdmin";
     }
@@ -35,8 +36,7 @@ public class DistributionClassController {
     }
     @RequestMapping("queryClass.do")
     public String queryClass(Course course,Model model,String teacherName,String teacherSno ){
-        System.out.println("==========="+teacherSno);
-        System.out.println("==========="+teacherName);
+
      List<Course> courseList= dc.queryClass(course);
       model.addAttribute("teacherNameL",teacherName);
       model.addAttribute("teacherSnoL",teacherSno);
@@ -45,10 +45,11 @@ public class DistributionClassController {
          return "distributionClass/dclasspage";
     }
 @RequestMapping("toDistributionPage.do")
-    public String toDistributionPage(String teacherNameL,String teacherSnoL,int courseId,Model model){
+    public String toDistributionPage(String teacherNameL,String teacherSnoL,int courseId,String courseDep,Model model){
                 model.addAttribute("teacherNameL",teacherNameL);
                 model.addAttribute("teacherSnoL",teacherSnoL);
                 model.addAttribute("courseId",courseId);
+                model.addAttribute("courseDep",courseDep);
 
 
         return "distributionClass/showDpage";
@@ -57,7 +58,8 @@ public class DistributionClassController {
     @ResponseBody
     public String savedis(Course course){
 
-      int i=  dc.savedis(course);
+      int i=dc.savedis(course);
+      int j=dc.saveClasstable(course);
         return "success";
 }
 }

@@ -63,13 +63,15 @@ public class AdminEnterController {
         int i=aes.deletedByUserId(id);
         return "admin/showUser";
     }
-   @RequestMapping("distributionRole.do")
+    @RequestMapping("distributionRole.do")
     public String distributionRole(int userId,Model model){
-       List<Role> roleList =   aes.queryAllRole();
+        List<Role> roleList =   aes.queryAllRole();
+        int roleByUserId=aes.queryRoleByUserId(userId);
+        model.addAttribute("roleByUserId",roleByUserId);
         model.addAttribute("roleList",roleList);
         model.addAttribute("userId",userId);
-       return "admin/distributionRole";
-   }
+        return "admin/distributionRole";
+    }
    @RequestMapping("saveRole.do")
    @ResponseBody
     public String saveRole(UserRole userRole){
@@ -92,7 +94,6 @@ public class AdminEnterController {
     @RequestMapping("setDime.ajax")
     @ResponseBody
     public int setDime(Date date){
-
         return aes.setDime(date);
     }
 

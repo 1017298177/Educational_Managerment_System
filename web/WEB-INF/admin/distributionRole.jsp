@@ -29,10 +29,12 @@
             <input value="${userId}" name="userId" type="hidden">
 
             <div class="layui-form-item">
-                <label class="layui-form-label">角色</label>
+                <label class="layui-form-label">角色</label><br>
                 <div class="layui-input-block">
                     <c:forEach  items="${roleList}" var="x">
-                        <input type="radio" name="roleId" value="${x.roleId}">${x.roleName}
+                        <input type="radio" name="roleId"
+                               <c:if  test="${roleByUserId==x.roleId}"> checked="checked"</c:if>
+                               value="${x.roleId}">${x.roleName}<br>
                     </c:forEach>
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -40,10 +42,11 @@
                 </div>
             </div>
 
-
+<center>
             <button  class="layui-btn" lay-filter="add" lay-submit="">
-                保存
+                确定分配
             </button>
+</center>
         </form>
     </div>
 </div>

@@ -12,6 +12,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,9 +23,8 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private UserMapper userMapper;
 
-
     @Override
-    public String checkLogin(User user,String verify) {
+    public String checkLogin(User user, String verify, HttpServletRequest request) {
         Subject s = SecurityUtils.getSubject();
         String code = (String) s.getSession().getAttribute("code");
         if(verify.equals(code)) {
@@ -32,6 +33,8 @@ public class LoginServiceImpl implements LoginService {
             try {
                 //进行认证(因为我们写了自定义的realm类，所以会自动到realm类里面去认证)
                 s.login(upt);
+                Integer count = (Integer) request.getServletContext().getAttribute("count");
+                request.getServletContext().setAttribute("count",count+1);
                 return "success";
             } catch (AuthenticationException e) {
                 //登录失败

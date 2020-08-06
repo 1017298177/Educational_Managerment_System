@@ -33,6 +33,10 @@
     delete from date
     where date_id = #{dateId,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteBySemester" parameterType="java.lang.String">
+     delete from date where semester = #{semester}
+  </delete>
   <insert id="insert" parameterType="com.ed.pojo.Date" >
     insert into date (date_id, sonsult_date_start, sonsult_date_end, 
       course_date_start, course_date_end, user_sno, 

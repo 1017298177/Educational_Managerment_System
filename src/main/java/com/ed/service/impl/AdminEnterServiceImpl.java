@@ -133,6 +133,21 @@ public class AdminEnterServiceImpl implements AdminEnterService {
 
     @Override
     public int setDime(Date date) {
+
+        dateMapper.deleteBySemester(date.getSemester());
+
         return dateMapper.insertSelective(date);
+    }
+    @Override
+    public int queryRoleByUserId(int userId) {
+
+        String roleByUserId = userRoleMapper.queryRoleByUserId(userId);
+
+        if (roleByUserId !=null){
+            int i = Integer.parseInt(roleByUserId);
+            return i ;
+        }
+        else
+            return 0;
     }
 }

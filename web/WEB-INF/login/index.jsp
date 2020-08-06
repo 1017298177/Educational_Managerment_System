@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/xadmin.css">
         <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
         <script src="${pageContext.request.contextPath}/static/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/xadmin.js"></script>
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
         <!--[if lt IE 9]>
@@ -20,8 +21,17 @@
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script>
-            // 是否开启刷新记忆tab功能
-            // var is_remember = false;
+            $(function () {
+                onLineCount();
+            })
+            function onLineCount() {
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/loginController/onLineCount.ajax",
+                    success:function (data) {
+                        $("#onLineCount").text("在线人数："+data+"人")
+                    }
+                })
+            }
         </script>
     </head>
     <body class="index">
@@ -43,6 +53,12 @@
                         <dd>
                             <a  onclick="xadmin.add_tab('修改密码','${pageContext.request.contextPath}/loginController/updatePasswordPage.do')">修改密码</a></dd>
                     </dl>
+                </li>
+                <li class="layui-nav-item to-index">
+                    <a onclick="onLineCount()" javascript:void(0)>
+                    <i class="iconfont"><img src="${pageContext.request.contextPath}/static/images/onLine.jpg"></i>
+                    <cite id="onLineCount"></cite>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -177,7 +193,7 @@
                             <li>
                                 <a onclick="xadmin.add_tab('疫情统计','${pageContext.request.contextPath}/yiqingController/yiqing.do')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>疫情统计</cite></a>
+                                    <cite >疫情统计</cite></a>
                             </li>
 
                         </ul>
@@ -231,7 +247,6 @@
                 }
             }
         })
-
     }
 </script>
 

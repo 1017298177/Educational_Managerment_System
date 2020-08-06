@@ -12,4 +12,5 @@ public interface DistributionClassService {
     List<Course> queryClass(Course course);
 
     int savedis(Course course);
+    int saveClasstable(Course course);
 }

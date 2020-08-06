@@ -7,18 +7,23 @@
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!--引入配置好的缓存bean-->
-       <!-- <property name="cacheManager" ref="cacheManager"/>-->
+        <!-- <property name="cacheManager" ref="cacheManager"/>-->
         <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
         <!--设置session的状态-->
         <property name="sessionMode" value="native"/>
         <!--引入配置好的自定义的realm -->
         <property name="realm" ref="jdbcRealm"/>
+        <!-- 将sessionManager交给安全管理器管理       -->
         <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
+<!-- 去除shiro的JsessionID  管理监听 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <property name="sessionIdUrlRewritingEnabled" value="false"/>
     </bean>
+
+
+
  <!--  设置缓存 <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
              <property name="cacheManager" ref="ehCacheManager"/>
         <property name="cacheManagerConfigFile" value="classpath:some/path/to/ehcache.xml"/> &ndash;&gt;

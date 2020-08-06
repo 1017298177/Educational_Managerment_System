@@ -64,12 +64,14 @@ public class LoginController {
 
     @RequestMapping("checkLogin.ajax")
     @ResponseBody
-    public String checkLogin(User user,String verify) {
-        String check = loginService.checkLogin(user,verify);
+    public String checkLogin(User user,String verify,HttpServletRequest request) {
+        String check = loginService.checkLogin(user,verify,request);
         return check;
     }
     @RequestMapping("logout.do")
-    public String logout(){
+    public String logout(HttpServletRequest request){
+        Integer count = (Integer) request.getServletContext().getAttribute("count");
+         request.getServletContext().setAttribute("count",count-1);
         SecurityUtils.getSubject().logout();
         return "redirect:/loginController/noLogin.do";
     }
@@ -105,6 +107,13 @@ public class LoginController {
         return  loginService.updatePassword(newPass);
     }
 
+
+    @RequestMapping("onLineCount.ajax")
+    @ResponseBody
+    public int  onLineCount(HttpServletRequest request){
+        Integer count = (Integer) request.getServletContext().getAttribute("count");
+        return  count;
+    }
 
 
 }
