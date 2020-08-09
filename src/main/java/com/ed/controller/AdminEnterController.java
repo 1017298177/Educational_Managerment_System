@@ -28,6 +28,7 @@ public class AdminEnterController {
     @RequestMapping("addUser.do")
     @ResponseBody
     public String addUser(Model model, User user) {
+        System.out.println("增加的用户user="+user);
         int i = aes.addUser(user);
         if (i > 0) {
             model.addAttribute("message", "success");

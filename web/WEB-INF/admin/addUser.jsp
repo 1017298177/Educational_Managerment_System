@@ -147,6 +147,18 @@
                 </div>
             </div>
             <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>邮箱
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="L_email" name="email" required="" lay-verify="email"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
 
                 </label>
                 <button  class="layui-btn" lay-filter="add" lay-submit="">
@@ -179,39 +191,24 @@
 
         //监听提交
         form.on('submit(add)',
-            function (data) {
+            function () {
                 $.ajax({
                     url:"${pageContext.request.contextPath}/adminEnter/addUser.do",
                     type:"post",
                     data:$("form").serialize(),
                     success:function (data) {
-
+                      layer.msg("增加成功",{icon:1,time:200})
+                        setTimeout(function () {
+                            xadmin.close();
+                            // 可以对父窗口进行刷新
+                            xadmin.father_reload();
+                        },200)
                     }
-
                 })
-                console.log(data);
-                //发异步，把数据提交给php
-                layer.alert("增加成功", {
-                        icon: 6
-                    },
-                    function () {
-                        //关闭当前frame
-                        xadmin.close();
-
-                        // 可以对父窗口进行刷新
-                        xadmin.father_reload();
-                    });
                 return false;
             });
 
     });</script>
-<script>var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();</script>
 </body>
 
 </html>

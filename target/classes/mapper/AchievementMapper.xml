@@ -10,7 +10,7 @@
     <result column="achievement_user_sno" property="achievementUserSno" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    achievement_id, achievement_course,achievement_course_type, achievement_core,
+    achievement_id,achievement_course,achievement_course_type, achievement_core,
     achievement_course_credit, achievement_user_sno
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -20,25 +20,12 @@
     where achievement_id = #{achievementId,jdbcType=INTEGER}
   </select>
 
-  <select id="selectAchievement" resultMap="BaseResultMap" >
-       select  <include refid="Base_Column_List" /> from achievement
-    <where>
-      <if test="achievementCourse != null and achievementCourse !=''" >
-        achievement_course like concat('%',#{achievementCourse},'%') and
-      </if>
-      <if test="achievementCourseType != null and achievementCourseType !=''" >
-        achievement_course_type like concat('%',#{achievementCourseType},'%') and
-      </if>
-      <if test="achievementCore != null and achievementCore !=''" >
-        achievement_core like concat('%',#{achievementCore},'%') and
-      </if>
-      <if test="achievementCourseCredit != null and achievementCourseCredit !=''" >
-        achievement_course_credit like concat('%',#{achievementCourseCredit},'%') and
-      </if>
-      <if test="achievementUserSno != null and achievementUserSno !=''" >
-        achievement_user_sno like concat('%',#{achievementUserSno},'%')
-      </if>
-    </where>
+
+  <select id="selectAchievementByUserSno" resultMap="BaseResultMap" parameterType="com.ed.pojo.Achievement" >
+    select
+    <include refid="Base_Column_List" />
+    from achievement
+    where achievement_user_sno = #{achievementUserSno}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -47,7 +34,7 @@
   </delete>
   <insert id="insert" parameterType="com.ed.pojo.Achievement" >
     insert into achievement (achievement_id, achievement_course, 
-      " achievement_course_type", achievement_core, 
+      achievement_course_type, achievement_core,
       achievement_course_credit, achievement_user_sno
       )
     values (#{achievementId,jdbcType=INTEGER}, #{achievementCourse,jdbcType=VARCHAR}, 
@@ -55,7 +42,7 @@
       #{achievementCourseCredit,jdbcType=DOUBLE}, #{achievementUserSno,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ed.pojo.Achievement" >
+  <insert id="insertSelective" parameterType="com.ed.pojo.Achievement">
     insert into achievement
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="achievementId != null" >
@@ -65,7 +52,7 @@
         achievement_course,
       </if>
       <if test="achievementCourseType != null" >
-        " achievement_course_type",
+        achievement_course_type,
       </if>
       <if test="achievementCore != null" >
         achievement_core,
@@ -101,19 +88,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ed.pojo.Achievement" >
     update achievement
     <set >
-      <if test="achievementCourse != null" >
+      <if test="achievementCourse != null and achievementCourse != '' " >
         achievement_course = #{achievementCourse,jdbcType=VARCHAR},
       </if>
-      <if test="achievementCourseType != null" >
-        " achievement_course_type" = #{achievementCourseType,jdbcType=VARCHAR},
+      <if test="achievementCourseType != null and achievementCourseType != '' " >
+        achievement_course_type = #{achievementCourseType,jdbcType=VARCHAR},
       </if>
-      <if test="achievementCore != null" >
+      <if test="achievementCore != null and achievementCore != '' " >
         achievement_core = #{achievementCore,jdbcType=INTEGER},
       </if>
-      <if test="achievementCourseCredit != null" >
+      <if test="achievementCourseCredit != null and achievementCourseCredit != '' " >
         achievement_course_credit = #{achievementCourseCredit,jdbcType=DOUBLE},
       </if>
-      <if test="achievementUserSno != null" >
+      <if test="achievementUserSno != null and achievementUserSno != '' " >
         achievement_user_sno = #{achievementUserSno,jdbcType=INTEGER},
       </if>
     </set>
@@ -122,10 +109,21 @@
   <update id="updateByPrimaryKey" parameterType="com.ed.pojo.Achievement" >
     update achievement
     set achievement_course = #{achievementCourse,jdbcType=VARCHAR},
-      " achievement_course_type" = #{achievementCourseType,jdbcType=VARCHAR},
+      achievement_course_type = #{achievementCourseType,jdbcType=VARCHAR},
       achievement_core = #{achievementCore,jdbcType=INTEGER},
       achievement_course_credit = #{achievementCourseCredit,jdbcType=DOUBLE},
       achievement_user_sno = #{achievementUserSno,jdbcType=INTEGER}
     where achievement_id = #{achievementId,jdbcType=INTEGER}
   </update>
+  <select id="selectScoreBySno" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from achievement
+    where achievement_user_sno = #{userSno} and achievement_course=#{courseName}
+  </select>
+  <select id="selectAchievement" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from achievement
+  </select>
 </mapper>

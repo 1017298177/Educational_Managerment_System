@@ -22,4 +22,6 @@ public interface DateMapper {
     List<Date> queryAll();
 
     int deleteBySemester(String semester);
+
+    Date selectDateBySemesterId(String semester);
 }

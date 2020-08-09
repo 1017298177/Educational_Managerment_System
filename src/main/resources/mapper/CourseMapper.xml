@@ -31,9 +31,30 @@
     from course
     where course_id = #{courseId,jdbcType=INTEGER}
   </select>
-  <select id="selectTrain" resultMap="BaseResultMap" parameterType="com.ed.pojo.Course">
-    select course_id,course_name,course_type,course_credit,course_check_method,course_department
-    from course where user_sno=#{userSno} and course_state=1
+  <select id="selectTrain" resultMap="BaseResultMap" parameterType="com.ed.pojo.User">
+   SELECT
+course.course_id,
+course.course_name,
+course.course_type,
+course.course_credit,
+course.user_sno,
+course.course_check_method,
+course.course_teacher,
+course.course_location,
+course.course_week,
+course.course_number,
+course.course_class,
+course.course_grade,
+course.course_semester,
+course.course_state,
+course.course_person_total,
+course.course_department,
+course.course_class_state
+FROM
+user
+INNER JOIN user_course ON `user`.user_sno = user_course.stu_sno
+INNER JOIN course ON user_course.course_id = course.course_id
+where course_state  = 1
   </select>
 
   <select id="selectCourse" resultMap="BaseResultMap">
@@ -274,17 +295,54 @@
     <include refid="Base_Column_List"/>
     from course
     <trim prefix=" where" suffix=" " suffixOverrides="and">
-
       <if test="courseDepartment != null and courseDepartment !='' ">
         course_department = #{courseDepartment,jdbcType=VARCHAR} and
       </if>
       <if test="courseGrade != null and courseGrade != ''  ">
         course_grade = #{courseGrade,jdbcType=VARCHAR} and
       </if>
-      <if test="courseClassState != null and courseClassState != ''">
+      <if test="courseClassState != null">
         course_class_state = #{courseClassState,jdbcType=INTEGER} and
       </if>
     </trim>
+  </select>
+
+  <select id="selectClassBySno" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where user_sno = #{userSno}
+  </select>
+
+  <select id="selectCouseName" resultType="java.lang.String">
+    select course_name from  course where user_sno = #{userSno}
+  </select>
+
+  <!--通过UserSon查询-->
+  <select id="selectByUserSon" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   SELECT
+course.course_id,
+course.course_name,
+course.course_type,
+course.course_credit,
+course.user_sno,
+course.course_check_method,
+course.course_teacher,
+course.course_location,
+course.course_week,
+course.course_number,
+course.course_class,
+course.course_grade,
+course.course_semester,
+course.course_state,
+course.course_person_total,
+course.course_department,
+course.course_class_state
+FROM
+`user`
+INNER JOIN user_course ON `user`.user_sno = user_course.stu_sno
+INNER JOIN course ON user_course.course_id = course.course_id
+where `user`.user_sno = #{userSno}
   </select>
 
 </mapper>

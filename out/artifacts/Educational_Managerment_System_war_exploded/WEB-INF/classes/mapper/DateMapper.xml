@@ -128,4 +128,10 @@
       semester = #{semester,jdbcType=VARCHAR}
     where date_id = #{dateId,jdbcType=INTEGER}
   </update>
+
+  <!--通过学期查询时间-->
+  <select id="selectDateBySemesterId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="Base_Column_List" />
+    from date where date.semester = #{semester}
+  </select>
 </mapper>

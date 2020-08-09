@@ -114,4 +114,23 @@
       class_num = #{classNum,jdbcType=VARCHAR}
     where claas_id = #{claasId,jdbcType=INTEGER}
   </update>
+  <!--通过教师工号查询班级-->
+  <select id="selectClassByUserSon" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select DISTINCT(class_c),claas_id
+    from class  where class_techer_sno = #{userSno} group by class_c
+  </select>
+
+  <select id="selectClassBySno" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from class
+    where class_techer_sno = #{userSno} group by class_c
+  </select>
+  <select id="selectTableByC" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from class
+    where class_c = #{class1ClassC}
+  </select>
+
 </mapper>

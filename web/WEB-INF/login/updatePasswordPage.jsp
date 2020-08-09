@@ -30,8 +30,7 @@
 <%--       }--%>
 <%--   </style>--%>
 </head>
-
-
+<body background="url(${pageContext.request.contextPath}/static/images/background.jpg)">
 <div class="layui-container" >
     <div class="layui-row" >
         <form class="layui-form" style="position: absolute;left: 370px;top: 0px">
@@ -134,7 +133,7 @@
                     function (data) {
                         layer.msg('修改成功',{icon:1,time:300})
                         setTimeout(function () {
-                            parent.location.href="${pageContext.request.contextPath}/loginController/logout.do"
+                            window.location.href="${pageContext.request.contextPath}/loginController/logout.do"
                         },300)
                     }
                 )

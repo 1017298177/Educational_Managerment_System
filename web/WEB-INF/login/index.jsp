@@ -51,7 +51,7 @@
                         <dd>
                             <a  href="${pageContext.request.contextPath}/loginController/logout.do">切换帐号</a></dd>
                         <dd>
-                            <a  onclick="xadmin.add_tab('修改密码','${pageContext.request.contextPath}/loginController/updatePasswordPage.do')">修改密码</a></dd>
+                            <a  href="${pageContext.request.contextPath}/loginController/sendEmail.do">修改密码</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item to-index">
@@ -114,32 +114,32 @@
                                 </li>
                             </shiro:hasRole>
                             <shiro:hasRole name="teacher">
-                            <li>
-                                <a onclick="xadmin.add_tab('学生信息','admin-cate.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>学生信息</cite></a>
-                            </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('学生信息','${pageContext.request.contextPath}/user/classInfo.do')">
+                                        <i class="iconfont">&#xe6a7;</i>
+                                        <cite>学生信息</cite></a>
+                                </li>
                             </shiro:hasRole>
                             <shiro:hasRole name="teacher">
-                            <li>
-                                <a onclick="xadmin.add_tab('课程表','admin-cate.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>课程表</cite></a>
-                            </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('课程表','${pageContext.request.contextPath}/course/weekTime.do')">
+                                        <i class="iconfont">&#xe6a7;</i>
+                                        <cite>课程表</cite></a>
+                                </li>
                             </shiro:hasRole>
                             <shiro:hasRole name="teacher">
-                            <li>
-                                <a onclick="xadmin.add_tab('成绩录入','admin-cate.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>成绩录入</cite></a>
-                            </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('成绩录入','${pageContext.request.contextPath}/role/classInfo.do')">
+                                        <i class="iconfont">&#xe6a7;</i>
+                                        <cite>成绩录入</cite></a>
+                                </li>
                             </shiro:hasRole>
                             <shiro:hasRole name="teacher">
-                            <li>
-                                <a onclick="xadmin.add_tab('综合评教','admin-cate.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>综合评教</cite></a>
-                            </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('综合评教','${pageContext.request.contextPath}/sonsultTotalController/sonsultTotalPage.do')">
+                                        <i class="iconfont">&#xe6a7;</i>
+                                        <cite>综合评教</cite></a>
+                                </li>
                             </shiro:hasRole>
                             <shiro:hasRole name="student">
                             <li>
@@ -147,11 +147,11 @@
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>培养方案</cite></a>
                             </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('学生评教','admin-cate.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>学生评教</cite></a>
-                            </li>
+                                <li>
+                                    <a onclick="xadmin.add_tab('学生评教','${pageContext.request.contextPath}/sonsultController/sonsultPage.do')">
+                                        <i class="iconfont">&#xe6a7;</i>
+                                        <cite>学生评教</cite></a>
+                                </li>
                             <li>
                                 <a onclick="thinkTime()">
                                     <i class="iconfont">&#xe6a7;</i>
@@ -195,7 +195,6 @@
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite >疫情统计</cite></a>
                             </li>
-
                         </ul>
                     </li>
                 </ul>

@@ -27,7 +27,7 @@ public class SelectAchievementServiceImpl implements SelectAchievementService {
         User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
         achievement.setAchievementUserSno(Integer.parseInt(user.getUserSno()));
         PageHelper.startPage(achievement.getPage(),achievement.getRow());
-        List<Achievement> achievements = achievementMapper.selectAchievement(achievement);
+        List<Achievement> achievements = achievementMapper.selectAchievementByUserSno(achievement);
         PageInfo<Achievement> pageInfo = new PageInfo<>(achievements);
         Map<String, Object> mapList = new HashMap<>();
         mapList.put("list",pageInfo.getList());

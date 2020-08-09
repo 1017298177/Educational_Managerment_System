@@ -1,6 +1,6 @@
 package com.ed.pojo;
 
-public class Sonsult_total {
+public class SonsultTotal {
     private Integer sonsultTotalId;
 
     private Integer sonsultTotalA;
@@ -18,6 +18,21 @@ public class Sonsult_total {
     private Integer sonsultTotalTid;
 
     private String sonsultTotalClass;
+
+    @Override
+    public String toString() {
+        return "SonsultTotal{" +
+                "sonsultTotalId=" + sonsultTotalId +
+                ", sonsultTotalA=" + sonsultTotalA +
+                ", sonsultTotalB=" + sonsultTotalB +
+                ", sonsultTotalC=" + sonsultTotalC +
+                ", sonsultTotalD=" + sonsultTotalD +
+                ", sonsultTotalMessage='" + sonsultTotalMessage + '\'' +
+                ", sonsultTotalCount=" + sonsultTotalCount +
+                ", sonsultTotalTid=" + sonsultTotalTid +
+                ", sonsultTotalClass='" + sonsultTotalClass + '\'' +
+                '}';
+    }
 
     public Integer getSonsultTotalId() {
         return sonsultTotalId;

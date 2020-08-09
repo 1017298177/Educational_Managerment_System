@@ -2,9 +2,11 @@ package com.ed.service.impl;
 
 import com.ed.mapper.CourseMapper;
 import com.ed.mapper.DateMapper;
+import com.ed.mapper.UserCourseMapper;
 import com.ed.pojo.Course;
 import com.ed.pojo.Date;
 import com.ed.pojo.User;
+import com.ed.pojo.UserCourse;
 import com.ed.service.SelectCourseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,6 +26,8 @@ public class SelectCourseServiceImpl implements SelectCourseService {
     CourseMapper courseMapper;
     @Autowired
     DateMapper dateMapper;
+    @Autowired
+    UserCourseMapper userCourseMapper;
 
     @Override
     public Map<String, Object> pageMap(Course course) {
@@ -56,6 +60,16 @@ public class SelectCourseServiceImpl implements SelectCourseService {
 
     @Override
     public void selectCourse(int courseId) {
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+        UserCourse userCourse = new UserCourse();
+        userCourse.setStuSno(user.getUserSno());
+        userCourse.setCourseId(courseId);
+        UserCourse userCourse1 = userCourseMapper.distinctSelect(userCourse);
+       if(userCourse1==null){
+         userCourseMapper.insert(userCourse);
+        }
+
+        HashMap map = new HashMap();
         courseMapper.checkedCourse(courseId);
     }
 
@@ -88,7 +102,6 @@ public class SelectCourseServiceImpl implements SelectCourseService {
         if(compareTo>0&&compareTo1<0){
             return "true";
         }
-
         return null;
     }
 }

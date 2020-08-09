@@ -1,6 +1,6 @@
 package com.ed.pojo;
 
-public class Sonsult {
+public class Sonsult extends MyPage{
     private Integer sonsultId;
 
     private String sonsultSemester;
@@ -14,6 +14,30 @@ public class Sonsult {
     private String sonsultStart;
 
     private String sonsultEnd;
+
+    @Override
+    public String toString() {
+        return "Sonsult{" +
+                "sonsultId=" + sonsultId +
+                ", sonsultSemester='" + sonsultSemester + '\'' +
+                ", sonsultCourse='" + sonsultCourse + '\'' +
+                ", sonsultTeacher='" + sonsultTeacher + '\'' +
+                ", sonsultState=" + sonsultState +
+                ", sonsultStart='" + sonsultStart + '\'' +
+                ", sonsultEnd='" + sonsultEnd + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    private Integer userId;
 
     public Integer getSonsultId() {
         return sonsultId;

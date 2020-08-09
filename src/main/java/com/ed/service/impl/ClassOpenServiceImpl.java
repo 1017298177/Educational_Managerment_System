@@ -46,6 +46,7 @@ public class ClassOpenServiceImpl implements ClassOpenService {
     @Override
     public int addCourse(Course course) {
             course.setCourseClassState(0);
+            course.setCourseState(0);
         return courseMapper.insertSelective(course);
     }
 

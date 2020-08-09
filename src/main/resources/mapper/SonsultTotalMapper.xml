@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ed.mapper.Sonsult_totalMapper" >
-  <resultMap id="BaseResultMap" type="com.ed.pojo.Sonsult_total" >
+<mapper namespace="com.ed.mapper.SonsultTotalMapper" >
+  <resultMap id="BaseResultMap" type="com.ed.pojo.SonsultTotal" >
     <id column="sonsult_total_id" property="sonsultTotalId" jdbcType="INTEGER" />
     <result column="sonsult_total_a" property="sonsultTotalA" jdbcType="INTEGER" />
     <result column="sonsult_total_b" property="sonsultTotalB" jdbcType="INTEGER" />
@@ -26,7 +26,7 @@
     delete from sonsult_total
     where sonsult_total_id = #{sonsultTotalId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ed.pojo.Sonsult_total" >
+  <insert id="insert" parameterType="com.ed.pojo.SonsultTotal" >
     insert into sonsult_total (sonsult_total_id, sonsult_total_a, sonsult_total_b, 
       sonsult_total_c, sonsult_total_d, sonsult_total_message, 
       sonsult_total_count, sonsult_total_tId, sonsult_total_class
@@ -36,7 +36,7 @@
       #{sonsultTotalCount,jdbcType=INTEGER}, #{sonsultTotalTid,jdbcType=INTEGER}, #{sonsultTotalClass,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ed.pojo.Sonsult_total" >
+  <insert id="insertSelective" parameterType="com.ed.pojo.SonsultTotal" >
     insert into sonsult_total
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="sonsultTotalId != null" >
@@ -97,7 +97,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ed.pojo.Sonsult_total" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ed.pojo.SonsultTotal" >
     update sonsult_total
     <set >
       <if test="sonsultTotalA != null" >
@@ -127,7 +127,7 @@
     </set>
     where sonsult_total_id = #{sonsultTotalId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ed.pojo.Sonsult_total" >
+  <update id="updateByPrimaryKey" parameterType="com.ed.pojo.SonsultTotal" >
     update sonsult_total
     set sonsult_total_a = #{sonsultTotalA,jdbcType=INTEGER},
       sonsult_total_b = #{sonsultTotalB,jdbcType=INTEGER},
@@ -139,4 +139,5 @@
       sonsult_total_class = #{sonsultTotalClass,jdbcType=VARCHAR}
     where sonsult_total_id = #{sonsultTotalId,jdbcType=INTEGER}
   </update>
+
 </mapper>

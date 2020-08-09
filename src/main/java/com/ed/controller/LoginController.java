@@ -3,6 +3,7 @@ package com.ed.controller;
 import com.ed.pojo.User;
 import com.ed.service.LoginService;
 import com.ed.utils.ImageUtil;
+import com.ed.utils.SendEmail;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -114,6 +116,16 @@ public class LoginController {
         Integer count = (Integer) request.getServletContext().getAttribute("count");
         return  count;
     }
+
+
+    @RequestMapping("sendEmail.do")
+    public String sendEmail() throws MessagingException {
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+        String content = "http://localhost:8080/Educational_Managerment_System/loginController/updatePasswordPage.do";
+        SendEmail.sendMail(user.getUserEmail(),"账号有风险，请修改密码！",content);
+        return "redirect:/loginController/noLogin.do";
+    }
+
 
 
 }

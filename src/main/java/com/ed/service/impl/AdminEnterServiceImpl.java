@@ -30,8 +30,8 @@ public class AdminEnterServiceImpl implements AdminEnterService {
     public int  addUser(User user){
         String userSno = user.getUserSno();
         user.setUserCollege("大一");
-        user.setUserSemester("1");
-        user.setUserImage(userSno);
+        user.setUserSemester("2019-2020-2");
+        user.setUserImage(userSno+".jpg");
         //设置默认密码为123456
         //设置加密方式
         String algorithmName="MD5";

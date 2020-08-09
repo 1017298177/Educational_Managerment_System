@@ -2,6 +2,8 @@ package com.ed.mapper;
 
 import com.ed.pojo.Class;
 
+import java.util.List;
+
 public interface ClassMapper {
     int deleteByPrimaryKey(Integer claasId);
 
@@ -14,4 +16,10 @@ public interface ClassMapper {
     int updateByPrimaryKeySelective(Class record);
 
     int updateByPrimaryKey(Class record);
+
+    List<Class> selectClassByUserSon(String userSno);
+
+    List<Class> selectClassBySno(String userSno);
+
+    List<Class> selectTableByC(String class1ClassC);
 }

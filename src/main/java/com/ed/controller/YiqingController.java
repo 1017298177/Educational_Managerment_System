@@ -21,6 +21,7 @@ public class YiqingController {
         return "yiqing/yiqing";
     }
 
+
     @RequestMapping("yiqingfenxi.ajax")
     @ResponseBody
     public List<HashMap<String,String>> yiqingfenxi(){
@@ -34,9 +35,6 @@ public class YiqingController {
         List<HashMap<String, String>> province = yiqingService.selectChinaInfo();
         return province;
     }
-
-
-
 
     @RequestMapping("provinceCuredQianWu.ajax")
     @ResponseBody
@@ -56,8 +54,11 @@ public class YiqingController {
         return yiqingService.provinceyiqingfenxi(cityName);
     }
 
-
-
+    @RequestMapping("selectChinaProvinceInfo.ajax")
+    @ResponseBody
+    public  List<HashMap<String, String>> selectChinaProvinceInfo(){
+        return yiqingService.selectChinaProvinceInfo();
+    }
 
 
 }

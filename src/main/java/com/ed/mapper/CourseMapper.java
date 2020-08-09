@@ -1,6 +1,7 @@
 package com.ed.mapper;
 
 import com.ed.pojo.Course;
+import com.ed.pojo.User;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface CourseMapper {
     int updateByPrimaryKey(Course record);
 
 
-    List<Course> selectTrain(Course course);
+    List<Course> selectTrain(User user);
 
     List<Course> selectCourse(Course course);
 
@@ -29,4 +30,10 @@ public interface CourseMapper {
     List<Course> queryAll(Course course);
 
     List<Course> queryClass(Course course);
+
+    List<Course> selectClassBySno(String userSno);
+
+    String selectCouseName(String userSno);
+
+    List<Course> selectByUserSon(String userSno);
 }

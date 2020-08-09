@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.2</title>
+    <title>疫情统计</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -18,11 +18,20 @@
     <script src="${pageContext.request.contextPath}/static/lib/layui/layui.js" charset="utf-8"></script>
     <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/echarts.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/china.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/xadmin.js"></script>
 </head>
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">全国疫情分析</div>
+                <div class="layui-card-body" style="min-height: 280px;">
+                    <div id="main" class="layui-col-sm12" style="height: 300px;"></div>
+                </div>
+            </div>
+        </div>
 
         <div class="layui-col-sm12 layui-col-md6">
             <div class="layui-card">
@@ -88,7 +97,7 @@
 <script src="${pageContext.request.contextPath}/static/myjs/curedCountQingWu.js"></script>
 <script src="${pageContext.request.contextPath}/static/myjs/deadCountQingWu.js"></script>
 <script src="${pageContext.request.contextPath}/static/myjs/Province.js"></script>
-
+<script src="${pageContext.request.contextPath}/static/myjs/chinaInfo.js"></script>
 
 
 

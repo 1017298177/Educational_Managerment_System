@@ -229,6 +229,12 @@
         <type>pom</type>
     </dependency>
     <!-- shiro 整合 Spring  结束 -->
+    <!-- 发送邮件所需要的依赖 -->
+    <dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.6.2</version>
+  </dependency>
 
 </dependencies>
 

@@ -35,4 +35,8 @@ public interface UserMapper {
 
     List<User> queryAllTeacher(User user);
 
+    User selectTIdByTeacherName(String sonsultTeacher);
+
+    List<User> selectUserByClass(String class1ClassC);
+
 }

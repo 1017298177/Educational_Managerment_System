@@ -13,4 +13,6 @@ public interface YiqingService {
     List<HashMap<String, String>> provinceyiqingfenxi(String cityName);
 
     List<HashMap<String, String>> selectChinaInfo();
+
+    List<HashMap<String, String>> selectChinaProvinceInfo();
 }

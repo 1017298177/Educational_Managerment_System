@@ -98,4 +98,17 @@ public class YiqingServiceImpl implements YiqingService {
         }
         return list;
     }
+
+    @Override
+    public List<HashMap<String, String>> selectChinaProvinceInfo() {
+        List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+        List<Info> infos= yiqingMapper.selectChinaInfo();
+        for(Info i:infos){
+            HashMap<String, String> map=new HashMap<>();
+            map.put("name", i.getProvinceName());
+            map.put("value", i.getConfirmCount()+"");
+            list.add(map);
+        }
+        return list;
+    }
 }

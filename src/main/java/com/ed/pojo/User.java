@@ -18,7 +18,7 @@ public class User extends MyPage{
 
     private Integer userAge;
 
-    private String userDate;
+    private String userEmail;
 
     private String userDep;
 
@@ -48,7 +48,7 @@ public class User extends MyPage{
                 ", userClass='" + userClass + '\'' +
                 ", userSex='" + userSex + '\'' +
                 ", userAge=" + userAge +
-                ", userDate='" + userDate + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 ", userDep='" + userDep + '\'' +
                 ", userCard='" + userCard + '\'' +
                 ", userImage='" + userImage + '\'' +
@@ -117,12 +117,12 @@ public class User extends MyPage{
         this.userAge = userAge;
     }
 
-    public String getUserDate() {
-        return userDate;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserDate(String userDate) {
-        this.userDate = userDate;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUserDep() {

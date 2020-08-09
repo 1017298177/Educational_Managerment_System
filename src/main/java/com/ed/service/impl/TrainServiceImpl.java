@@ -24,9 +24,8 @@ public class TrainServiceImpl implements TrainService {
     @Override
     public Map<String, Object> pageMap(Course course) {
         User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
-        course.setUserSno(user.getUserSno());
         PageHelper.startPage(course.getPage(),course.getRow());
-        List<Course> courses = courseMapper.selectTrain(course);
+        List<Course> courses = courseMapper.selectTrain(user);
         PageInfo<Course> pageInfo = new PageInfo<>(courses);
         Map<String, Object> mapList = new HashMap<>();
         mapList.put("list",pageInfo.getList());

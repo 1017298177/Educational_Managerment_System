@@ -1,6 +1,6 @@
 package com.ed.pojo;
 
-public class Class {
+public class Class extends MyPage{
     private Integer claasId;
 
     private String classTecherSno;

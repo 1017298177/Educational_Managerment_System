@@ -1,11 +1,11 @@
 package com.ed.service.impl;
 
-import com.ed.mapper.AchievementMapper;
-import com.ed.mapper.FileResourcesMapper;
-import com.ed.mapper.UserMapper;
+import com.ed.mapper.*;
 import com.ed.pojo.Achievement;
+import com.ed.pojo.Class;
 import com.ed.pojo.FileResources;
 import com.ed.pojo.User;
+import com.ed.pojo.UserCourse;
 import com.ed.service.LoginService;
 import com.ed.utils.EncryptionUtil;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -30,24 +30,18 @@ public class LoginServiceImplTest {
     @Autowired
     UserMapper mapper;
     @Autowired
+    UserCourseMapper userCourseMapper;
+    @Autowired
     FileResourcesMapper fileResourcesMapper;
     @Autowired
     AchievementMapper achievementMapper;
+    @Autowired
+    ClassMapper classMapper;
 
     @Test
     public void selectRole() {
-        java.util.Date dateTime = new java.util.Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        //当前系统时间
-        String format1 = format.format(dateTime);
-        String courseDateStart = "2020-08-02 17:17:06";
-        String courseDateEnd = "2020-08-08 17:17:06";
-        int compareTo = "2020-08-05 17:17:06".compareTo(courseDateStart);
-        int compareTo1= format1.compareTo(courseDateEnd);
-        //选课未开始
-        System.out.println(compareTo);
-        System.out.println(compareTo1);
-        //选课已截止
+        List<Class> classes = classMapper.selectClassByUserSon("20202");
+        System.out.println(classes);
     }
 
     @Test
